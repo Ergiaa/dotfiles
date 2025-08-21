@@ -19,6 +19,3 @@ opacity = 0.98
 bindings = [
 { key = "F11", action = "ToggleFullscreen" }
 ]
-
-[terminal.shell]
-program = "/usr/bin/zsh"
