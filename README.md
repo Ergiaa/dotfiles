@@ -21,7 +21,7 @@ pacman -S stow
 Clone the repository into your `$HOME` directory:
 
 ```bash
-git clone git@github.com:dreamsofautonomy/dotfiles.git
+git clone git@github.com:Ergiaa/dotfiles.git ~/dotfiles
 cd dotfiles
 ```
 
