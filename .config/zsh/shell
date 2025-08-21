@@ -1,0 +1,15 @@
+# Append history instead of overwriting
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS    # Ignore all duplicate commands
+setopt HIST_IGNORE_SPACE       # Ignore commands starting with a space
+setopt SHARE_HISTORY           # Share history between sessions
+
+HISTSIZE=32768
+SAVEHIST=32768
+HISTFILE="$HOME/.zsh_history"
+
+autoload -Uz compinit
+compinit
+
+export PATH="./bin:$HOME/.local/bin:$PATH"
+hash -r   # Clears the command hash table (zsh doesn’t have a direct set +h toggle)

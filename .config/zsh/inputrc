@@ -1,0 +1,52 @@
+# --- Enable completion system ---
+autoload -Uz compinit
+compinit
+
+# --- Unicode & meta key support ---
+setopt INTERACTIVE_COMMENTS     # Allow # in the command line
+setopt MULTIBYTE                 # Better multibyte/UTF-8 handling
+
+# --- Completion behavior ---
+# Case-insensitive matches
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Ignore hidden files unless explicitly starting with '.'
+zstyle ':completion:*' file-patterns \
+  '*(-/):directories' \
+  '.*(-/):hidden-directories' \
+  '*:all-files'
+
+# Show matches immediately if ambiguous
+setopt AUTO_LIST
+setopt LIST_AMBIGUOUS
+
+# Display extra file info (like `ls -F`)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Show all results at once, no paging
+setopt LIST_PACKED
+setopt LIST_ROWS_FIRST
+
+# Ask before showing too many completions
+LISTMAX=200
+
+# Add trailing slash for directories and symlinked directories
+setopt AUTO_PARAM_SLASH
+setopt MARK_DIRS
+
+# Complete words considering text after the cursor
+setopt COMPLETE_IN_WORD
+
+# --- History search with arrow keys ---
+# Up arrow → search backward for commands starting with current input
+# Down arrow → search forward for commands starting with current input
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+
+# Left/Right arrow → move one character
+bindkey '^[[C' forward-char
+bindkey '^[[D' backward-char
+
+# --- Colorize completions ---
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
