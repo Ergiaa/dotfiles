@@ -28,6 +28,33 @@ map("v", "<leader>cR", ":Gen Refactor<CR>", { desc = "Refactor Selected Code" })
 
 map("n", "<leader>cc", ":Gen Chat<CR>", { desc = "Start Gen Chat" })
 
+-- autolist.nvim (list continuation)
+
+-- Insert mode
+map("i", "<tab>", "<cmd>AutolistTab<cr>", { desc = "Autolist indent" })
+map("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>", { desc = "Autolist unindent" })
+-- map("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- Optional: indent + recalc
+map("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>", { desc = "New bullet" })
+
+-- Normal mode
+map("n", "o", "o<cmd>AutolistNewBullet<cr>", { desc = "New bullet below" })
+map("n", "O", "O<cmd>AutolistNewBulletBefore<cr>", { desc = "New bullet above" })
+map("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>", { desc = "Toggle checkbox" })
+map("n", "<C-r>", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate list" })
+
+-- Cycle list types
+map("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true, desc = "Next list type" })
+map("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true, desc = "Prev list type" })
+-- If you don't want dot-repeat:
+-- map("n", "<leader>cn", "<cmd>AutolistCycleNext<cr>")
+-- map("n", "<leader>cp", "<cmd>AutolistCycleNext<cr>")
+
+-- Auto-recalc after edits
+map("n", ">>", ">><cmd>AutolistRecalculate<cr>", { desc = "Indent + recalc" })
+map("n", "<<", "<<<cmd>AutolistRecalculate<cr>", { desc = "Unindent + recalc" })
+map("n", "dd", "dd<cmd>AutolistRecalculate<cr>", { desc = "Delete line + recalc" })
+map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "Delete selection + recalc" })
+
 -- =========================
 -- Avante.nvim (completion & toggle)
 -- =========================
