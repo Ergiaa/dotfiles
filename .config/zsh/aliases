@@ -11,10 +11,15 @@ zd() {
   if [[ $# -eq 0 ]]; then
     builtin cd ~ || return
   elif [[ -d "$1" ]]; then
-    builtin cd "$1"
+    builtin cd "$1" 
   else
     z "$@" && printf " \U000F17A9 " && pwd || echo "Error: Directory not found"
   fi
+}
+
+# Use function for `ci`
+ci() {
+    builtin cd "$(zoxide query -i)" && printf " \U000F17A9 " && pwd || echo "Error: Directory not found"
 }
 
 # Open files/directories with default app
