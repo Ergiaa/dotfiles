@@ -17,12 +17,14 @@ fi
 
 source ~/.zinit/bin/zinit.zsh
 
+# Initialize completions
+autoload -Uz compinit && compinit
+
 # Plugins
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
 
-# Initialize completions
-autoload -Uz compinit && compinit
+source <(fzf --zsh)
 
 . "$HOME/.local/share/../bin/env"

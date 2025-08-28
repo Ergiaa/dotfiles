@@ -20,8 +20,8 @@ local options = {
     dotenv = { "dotenv_linter" },
 
     -- Markdown & docs
-    markdown = { "prettier" },
-    markdown_inline = { "prettier" },
+    -- markdown = { "prettier" },
+    -- markdown_inline = { "prettier" },
 
     -- Go
     go = { "gofumpt", "goimports-reviser", "golines" },
