@@ -70,6 +70,28 @@ return {
       require "configs.autolist"
     end,
   },
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+    config = function()
+      -- Optional: any additional setup can go here
+      -- For example, setting up window options if desired
+      -- require("lazygit").setup({})
+    end,
+  },
   -- {
   --   "folke/snacks.nvim",
   --   priority = 1000,

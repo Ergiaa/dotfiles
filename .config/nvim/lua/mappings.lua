@@ -55,6 +55,9 @@ map("n", "<<", "<<<cmd>AutolistRecalculate<cr>", { desc = "Unindent + recalc" })
 map("n", "dd", "dd<cmd>AutolistRecalculate<cr>", { desc = "Delete line + recalc" })
 map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "Delete selection + recalc" })
 
+-- Visual/normal mode keymapping style
+map("n", "<leader>lg", ":LazyGit<CR>", { noremap = true, silent = true, desc = "LazyGit" })
+
 -- =========================
 -- Avante.nvim (completion & toggle)
 -- =========================
