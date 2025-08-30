@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvbox",
-  theme_toggle = { "gruvbox", "one_light" },
+  theme = "tokyonight",
+  theme_toggle = { "tokyonight", "one_light" },
 
   -- hl_override = {
   -- 	Comment = { italic = true },
