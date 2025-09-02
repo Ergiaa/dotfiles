@@ -18,10 +18,18 @@ fi
 source ~/.zinit/bin/zinit.zsh
 
 # Initialize completions
-autoload -Uz compinit && compinit
+# zmodload zsh/complist
+# autoload -Uz compinit && compinit
+
+zinit snippet OMZP::mise
+zinit snippet OMZP::command-not-found
 
 # Plugins
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+autoload -Uz compinit && compinit
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light Aloxaf/fzf-tab
 
