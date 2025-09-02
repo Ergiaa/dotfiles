@@ -57,6 +57,19 @@ map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "Delete selection + reca
 
 -- Visual/normal mode keymapping style
 map("n", "<leader>lg", ":LazyGit<CR>", { noremap = true, silent = true, desc = "LazyGit" })
+map("n", "<leader>ls", ":LazySql<CR>", { noremap = true, silent = true, desc = "LazySql" })
+map(
+  "n",
+  "<leader>ld",
+  ":lua require('lazydocker').toggle({ engine = 'docker' })<CR>",
+  { noremap = true, silent = true, desc = "LazyDocker (docker)" }
+)
+map(
+  "n",
+  "<leader>lp",
+  ":lua require('lazydocker').toggle({ engine = 'podman' })<CR>",
+  { noremap = true, silent = true, desc = "LazyDocker (podman)" }
+)
 
 -- =========================
 -- Avante.nvim (completion & toggle)

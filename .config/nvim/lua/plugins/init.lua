@@ -92,6 +92,50 @@ return {
       -- require("lazygit").setup({})
     end,
   },
+  {
+    "LostbBlizzard/lazysql.nvim",
+    lazy = true,
+    cmd = {
+      "LazySql",
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    keys = {
+      { "<leader>ls", "<cmd>LazySql<cr>", desc = "LazySql" },
+    },
+    config = function()
+      require("lazysql").setup {}
+    end,
+  },
+  {
+    "crnvl96/lazydocker.nvim",
+    lazy = true,
+    cmd = {
+      "LazyDockerToggle",
+    },
+    -- keys = {
+    --   {
+    --     "<leader>ld",
+    --     function()
+    --       require("lazydocker").toggle()
+    --     end,
+    --     desc = "Toggle LazyDocker",
+    --   },
+    -- },
+    config = function()
+      require("lazydocker").setup {
+        window = {
+          settings = {
+            width = 0.618,
+            height = 0.618,
+            border = "rounded",
+            relative = "editor",
+          },
+        },
+      }
+    end,
+  },
   -- {
   --   "folke/snacks.nvim",
   --   priority = 1000,
