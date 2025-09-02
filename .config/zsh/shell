@@ -8,8 +8,11 @@ HISTSIZE=32768
 SAVEHIST=32768
 HISTFILE="$HOME/.zsh_history"
 
-autoload -Uz compinit
-compinit
+# fpath=(~/.zsh/completions $fpath)
+
+# zmodload zsh/complist
+# autoload -Uz compinit
+# compinit
 
 export PATH="./bin:$HOME/.local/bin:$PATH"
 hash -r   # Clears the command hash table (zsh doesn’t have a direct set +h toggle)

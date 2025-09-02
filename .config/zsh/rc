@@ -1,33 +1,52 @@
-# Source zsh configs if they exist
-for file in shell aliases functions prompt init envs; do
-  [[ -f "$HOME/.config/zsh/$file" ]] && source "$HOME/.config/zsh/$file"
-done
+# Manual Zsh config sourcing
+# Comment out any line to disable that part
+
+# Shell options and core settings
+[[ -f "$HOME/.config/zsh/shell" ]] && source "$HOME/.config/zsh/shell"
+
+# Aliases
+[[ -f "$HOME/.config/zsh/aliases" ]] && source "$HOME/.config/zsh/aliases"
+
+# Custom functions
+[[ -f "$HOME/.config/zsh/functions" ]] && source "$HOME/.config/zsh/functions"
+
+# Prompt configuration (Starship, Powerlevel10k, etc.)
+[[ -f "$HOME/.config/zsh/prompt" ]] && source "$HOME/.config/zsh/prompt"
+
+# Initialization scripts (plugins, keybindings, completions, etc.)
+[[ -f "$HOME/.config/zsh/init" ]] && source "$HOME/.config/zsh/init"
+
+# Environment variables
+[[ -f "$HOME/.config/zsh/envs" ]] && source "$HOME/.config/zsh/envs"
+
+# Input settings (readline, keymaps, etc.)
+# [[ -f "$HOME/.config/zsh/inputrc" ]] && source "$HOME/.config/zsh/inputrc"
 
 # Load zsh-native keybindings/completion instead of Bash's .inputrc
-if [[ $- == *i* ]]; then
-  # Our earlier zsh completion & keybinding setup
-  autoload -Uz compinit
-  compinit
-  
-  # History search on arrow keys
-  bindkey '^[[A' history-beginning-search-backward
-  bindkey '^[[B' history-beginning-search-forward
-  bindkey '^[[C' forward-char
-  bindkey '^[[D' backward-char
-  
-  # Case-insensitive completion
-  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-  
-  # Ignore hidden files unless starting with '.'
-  zstyle ':completion:*' file-patterns \
-    '*(-/):directories' \
-    '.*(-/):hidden-directories' \
-    '*:all-files'
-  
-  # Add trailing slash for dirs
-  setopt AUTO_PARAM_SLASH
-  
-  # Show all results at once
-  setopt LIST_PACKED
-  setopt LIST_ROWS_FIRST
-fi
+# if [[ $- == *i* ]]; then
+#   # Our earlier zsh completion & keybinding setup
+#   autoload -Uz compinit
+#   compinit
+#
+#   # History search on arrow keys
+#   bindkey '^[[A' history-beginning-search-backward
+#   bindkey '^[[B' history-beginning-search-forward
+#   bindkey '^[[C' forward-char
+#   bindkey '^[[D' backward-char
+#
+#   # Case-insensitive completion
+#   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+#
+#   # Ignore hidden files unless starting with '.'
+#   zstyle ':completion:*' file-patterns \
+#     '*(-/):directories' \
+#     '.*(-/):hidden-directories' \
+#     '*:all-files'
+#
+#   # Add trailing slash for dirs
+#   setopt AUTO_PARAM_SLASH
+#
+#   # Show all results at once
+#   setopt LIST_PACKED
+#   setopt LIST_ROWS_FIRST
+# fi
