@@ -48,4 +48,4 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # preview directory's content with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
-. "$HOME/.local/share/../bin/env"
+# . "$HOME/.local/share/../bin/env"
