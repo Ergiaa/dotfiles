@@ -15,6 +15,25 @@ if [[ ! -f ~/.zinit/bin/zinit.zsh ]]; then
   git clone https://github.com/zdharma-continuum/zinit.git ~/.zinit/bin
 fi
 
+SSH_ENV="$HOME/.ssh/agent_env"
+
+start_agent() {
+    eval "$(ssh-agent -s)" > /dev/null
+    ssh-add -q ~/.ssh/id_ed25519 2>/dev/null
+    echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK" > "$SSH_ENV"
+    echo "export SSH_AGENT_PID=$SSH_AGENT_PID" >> "$SSH_ENV"
+    chmod 600 "$SSH_ENV"
+}
+
+if [ -f "$SSH_ENV" ]; then
+    source "$SSH_ENV" > /dev/null
+    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+        start_agent
+    fi
+else
+    start_agent
+fi
+
 source ~/.zinit/bin/zinit.zsh
 
 # Initialize completions
