@@ -31,16 +31,16 @@ map("n", "<leader>cc", ":Gen Chat<CR>", { desc = "Start Gen Chat" })
 -- autolist.nvim (list continuation)
 
 -- Insert mode
-map("i", "<tab>", "<cmd>AutolistTab<cr>", { desc = "Autolist indent" })
-map("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>", { desc = "Autolist unindent" })
+-- map("i", "<tab>", "<cmd>AutolistTab<cr>", { desc = "Autolist indent" })
+-- map("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>", { desc = "Autolist unindent" })
 -- map("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- Optional: indent + recalc
-map("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>", { desc = "New bullet" })
+-- map("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>", { desc = "New bullet" })
 
 -- Normal mode
-map("n", "o", "o<cmd>AutolistNewBullet<cr>", { desc = "New bullet below" })
-map("n", "O", "O<cmd>AutolistNewBulletBefore<cr>", { desc = "New bullet above" })
-map("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>", { desc = "Toggle checkbox" })
-map("n", "<C-r>", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate list" })
+-- map("n", "o", "o<cmd>AutolistNewBullet<cr>", { desc = "New bullet below" })
+-- map("n", "O", "O<cmd>AutolistNewBulletBefore<cr>", { desc = "New bullet above" })
+-- map("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>", { desc = "Toggle checkbox" })
+-- map("n", "<C-r>", "<cmd>AutolistRecalculate<cr>", { desc = "Recalculate list" })
 
 -- Cycle list types
 map("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true, desc = "Next list type" })
