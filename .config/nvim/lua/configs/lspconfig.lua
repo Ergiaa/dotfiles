@@ -23,6 +23,7 @@ lspconfig.servers = {
   "yamlls", -- yaml-language-server
   "java_language_server", -- java-language-server
   "dotls", -- dot-language-server
+  "terraformls",
 }
 
 -- list of servers configured with default config.
@@ -41,6 +42,7 @@ local default_servers = {
   "ts_ls",
   "yamlls",
   "java_language_server",
+  "terraformls",
 }
 
 -- lsps with default config

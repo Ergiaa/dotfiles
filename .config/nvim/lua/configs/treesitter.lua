@@ -32,6 +32,7 @@ local options = {
     -- Utilities / helpers
     "regex", -- Regex highlighting
     "printf", -- printf-like formats
+    "terraform",
   },
 
   highlight = {
