@@ -140,7 +140,8 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
-    event = "BufReadPost",
+    lazy = false,
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       suggestion = {
         enabled = not vim.g.ai_cmp,
@@ -156,6 +157,7 @@ return {
       filetypes = {
         markdown = true,
         help = true,
+        ["*"] = true,
       },
     },
   },

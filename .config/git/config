@@ -6,7 +6,7 @@
 [commit]
     gpgSign = true
     # template = ~/.config/git/template
-    verbose = true  # add more context to commit messages
+    # verbose = true  # add more context to commit messages
 
 [core]
     autocrlf = input  # keep newlines as in input

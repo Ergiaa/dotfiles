@@ -8,6 +8,7 @@ fi
 # alias p='python'
 # export EDITOR="nvim"
 # export BAT_THEME="ansi"
+export OMARCHY_SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
 
 # Zinit installation (if not already installed)
 if [[ ! -f ~/.zinit/bin/zinit.zsh ]]; then
