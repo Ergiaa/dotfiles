@@ -71,6 +71,17 @@ map(
   { noremap = true, silent = true, desc = "LazyDocker (podman)" }
 )
 
+-- gitsigns
+map("n", "<leader>tb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git toggle blame" })
+
+-- copilot.lua
+-- map(
+--   "i",
+--   "<C-l>",
+--   ":Copilot suggestion accept<CR>",
+--   { desc = "Copilot accept suggestion", noremat = true, silent = true }
+-- )
+
 -- =========================
 -- Avante.nvim (completion & toggle)
 -- =========================
