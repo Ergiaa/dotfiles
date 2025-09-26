@@ -2,31 +2,27 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
-
--- list of all servers configured.
-lspconfig.servers = {
-  -- "bashls", -- bash-language-server
-  "cssls", -- css-lsp
-  "dockerls", -- dockerfile-language-server
-  "docker_compose_language_service", -- docker-compose-language-service
-  "eslint", -- eslint_d (via LSP)
-  "gopls", -- gopls (Go)
-  "html", -- html-lsp
-  "jsonls", -- json-lsp
-  "lua_ls", -- lua-language-server
-  "marksman", -- markdown
-  "prismals", -- prisma-language-server
-  "pyright", -- pyright (Python)
-  -- "shfmt", -- shfmt (usually a formatter, but has LSP hooks too)
-  "ts_ls", -- typescript-language-server (✅ correct as per lspconfig)
-  "yamlls", -- yaml-language-server
-  "java_language_server", -- java-language-server
-  "dotls", -- dot-language-server
+-- List of all servers you want to handle with Mason
+vim.lsp.servers = {
+  "cssls",
+  "dockerls",
+  "docker_compose_language_service",
+  "eslint",
+  "gopls",
+  "html",
+  "jsonls",
+  "lua_ls",
+  "marksman",
+  "prismals",
+  "pyright",
+  "ts_ls",
+  "yamlls",
+  "java_language_server",
+  "dotls",
   "terraformls",
 }
 
--- list of servers configured with default config.
+-- Default servers (no special configs)
 local default_servers = {
   "bashls",
   "cssls",
@@ -38,27 +34,28 @@ local default_servers = {
   "marksman",
   "prismals",
   "pyright",
-  -- "shfmt",
   "ts_ls",
   "yamlls",
   "java_language_server",
   "terraformls",
 }
 
--- lsps with default config
+-- Register default configs
+-- default setup for all servers
 for _, lsp in ipairs(default_servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
-lspconfig.lua_ls.setup {
+-- lua_ls custom
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-
   settings = {
     Lua = {
       diagnostics = {
@@ -76,9 +73,11 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "lua_ls"
 
-lspconfig.gopls.setup {
+-- gopls custom
+vim.lsp.config("gopls", {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -88,15 +87,14 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gotmpl", "gowork" },
-  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  root_dir = vim.fs.root(0, { "go.work", "go.mod", ".git" }),
   settings = {
     gopls = {
-      analyses = {
-        unusedparams = true,
-      },
+      analyses = { unusedparams = true },
       completeUnimported = true,
       usePlaceholders = true,
       staticcheck = true,
     },
   },
-}
+})
+vim.lsp.enable "gopls"
