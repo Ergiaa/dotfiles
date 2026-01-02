@@ -1,14 +1,14 @@
-require("nvchad.configs.lspconfig").defaults()
-
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 -- List of all servers you want to handle with Mason
 vim.lsp.servers = {
+  "bashls",
   "cssls",
   "dockerls",
   "docker_compose_language_service",
+  "dotls",
   "eslint",
   "gopls", -- custom config
   "html",
@@ -17,10 +17,9 @@ vim.lsp.servers = {
   "marksman",
   "prismals",
   "pyright",
-  "ts_ls",
+  "ts_ls", -- custom config
   "yamlls",
   "java_language_server",
-  "dotls",
   "terraformls",
   "omnisharp", -- C#
 }
@@ -31,13 +30,13 @@ local default_servers = {
   "cssls",
   "dockerls",
   "docker_compose_language_service",
+  "dotls",
   "eslint",
   "html",
   "jsonls",
   "marksman",
   "prismals",
   "pyright",
-  "ts_ls",
   "yamlls",
   "java_language_server",
   "terraformls",

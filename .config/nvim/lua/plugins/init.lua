@@ -55,9 +55,7 @@ return {
     event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      -- "echasnovski/mini.nvim", -- if you use the mini.nvim suite
-      -- "echasnovski/mini.icons", -- if you use standalone mini plugins
-      "nvim-tree/nvim-web-devicons", -- if you prefer nvim-web-devicons
+      "nvim-tree/nvim-web-devicons",
     },
     config = function()
       require "configs.render-markdown"
@@ -86,11 +84,6 @@ return {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
-    config = function()
-      -- Optional: any additional setup can go here
-      -- For example, setting up window options if desired
-      -- require("lazygit").setup({})
-    end,
   },
   {
     "LostbBlizzard/lazysql.nvim",
@@ -114,15 +107,6 @@ return {
     cmd = {
       "LazyDockerToggle",
     },
-    -- keys = {
-    --   {
-    --     "<leader>ld",
-    --     function()
-    --       require("lazydocker").toggle()
-    --     end,
-    --     desc = "Toggle LazyDocker",
-    --   },
-    -- },
     config = function()
       require("lazydocker").setup {
         window = {
@@ -143,56 +127,6 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require "configs.copilot"
-    end,
-  },
-  -- {
-  --   "folke/snacks.nvim",
-  --   priority = 1000,
-  --   lazy = false,
-  --   config = function()
-  --     require "configs.snacks"
-  --   end,
-  -- },
-  -- {
-  --   "christoomey/vim-tmux-navigator",
-  --   lazy = false,
-  --   -- cmd = {
-  --   --   "TmuxNavigateLeft",
-  --   --   "TmuxNavigateDown",
-  --   --   "TmuxNavigateUp",
-  --   --   "TmuxNavigateRight",
-  --   --   "TmuxNavigatePrevious",
-  --   --   "TmuxNavigatorProcessList",
-  --   -- },
-  --   -- keys = {
-  --   --   { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-  --   --   { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-  --   --   { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-  --   --   { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-  --   --   { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-  --   -- },
-  -- },
-  -- Custom Parameters (with defaults)
-  {
-    "David-Kunz/gen.nvim",
-    lazy = false,
-    config = function()
-      require("gen").setup {
-        -- model = "deepseek-coder:6.7b-instruct",
-        -- model = "deepseek-coder-v2:16b-lite-instruct-q4_0",
-        model = "qwen2.5-coder:7b-instruct",
-        host = "localhost",
-        port = "11434",
-        display_mode = "float",
-        quit_map = "q",
-        retry_map = "<c-r>",
-        accept_map = "<c-cr>",
-        show_prompt = false,
-        show_model = false,
-      }
-
-      -- load custom prompts
-      require "configs.gen-prompts"
     end,
   },
 }
