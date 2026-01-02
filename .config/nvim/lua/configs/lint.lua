@@ -12,7 +12,7 @@ lint.linters_by_ft = {
   typescriptreact = { "eslint_d" },
 
   -- Python
-  python = { "flake8" }, -- or "flake8" / "ruff" if preferred
+  -- python = { "flake8" }, -- or "flake8" / "ruff" if preferred
 
   -- Go
   go = { "golangci_lint" },
@@ -23,7 +23,7 @@ lint.linters_by_ft = {
   -- zsh = { "shellcheck" },
 
   -- YAML
-  yaml = { "yamllint" },
+  -- yaml = { "yamllint" },
 
   -- Docker
   dockerfile = { "hadolint" },

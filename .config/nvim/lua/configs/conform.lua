@@ -16,8 +16,8 @@ local options = {
     jsonc = { "prettier" },
     yaml = { "prettier" },
     toml = { "prettier" }, -- good for config files
-    ini = { "ini_fmt" },
-    dotenv = { "dotenv_linter" },
+    -- ini = { "ini_fmt" },
+    -- dotenv = { "dotenv" },
 
     -- Markdown & docs
     -- markdown = { "prettier" },
@@ -33,12 +33,15 @@ local options = {
     -- prisma = { "prisma_fmt" },
 
     -- Shell
-    sh = { "shfmt" },
-    bash = { "shfmt" },
-    zsh = { "shfmt" },
+    -- sh = { "shfmt" },
+    -- bash = { "shfmt" },
+    -- zsh = { "shfmt" },
 
     -- Docker
     dockerfile = { "prettier" },
+
+    -- C#
+    cs = { "csharpier" },
   },
   formatters = {
     -- Go

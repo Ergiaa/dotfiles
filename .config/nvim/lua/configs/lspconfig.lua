@@ -1,3 +1,5 @@
+require("nvchad.configs.lspconfig").defaults()
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -8,10 +10,10 @@ vim.lsp.servers = {
   "dockerls",
   "docker_compose_language_service",
   "eslint",
-  "gopls",
+  "gopls", -- custom config
   "html",
   "jsonls",
-  "lua_ls",
+  "lua_ls", -- custom config
   "marksman",
   "prismals",
   "pyright",
@@ -20,6 +22,7 @@ vim.lsp.servers = {
   "java_language_server",
   "dotls",
   "terraformls",
+  "omnisharp", -- C#
 }
 
 -- Default servers (no special configs)
@@ -38,18 +41,12 @@ local default_servers = {
   "yamlls",
   "java_language_server",
   "terraformls",
+  "omnisharp",
 }
 
 -- Register default configs
 -- default setup for all servers
-for _, lsp in ipairs(default_servers) do
-  vim.lsp.config(lsp, {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  })
-  vim.lsp.enable(lsp)
-end
+vim.lsp.enable(default_servers)
 
 -- lua_ls custom
 vim.lsp.config("lua_ls", {
@@ -98,3 +95,18 @@ vim.lsp.config("gopls", {
   },
 })
 vim.lsp.enable "gopls"
+
+-- ts_ls custom
+vim.lsp.config("ts_ls", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  init_options = {
+    preferences = {
+      indentSize = 4,
+      tabSize = 4,
+      disableSuggestions = true,
+    },
+  },
+})
+vim.lsp.enable "ts_ls"

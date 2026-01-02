@@ -12,6 +12,7 @@ local options = {
     "gowork",
     "lua", -- Lua
     "java", -- Java
+    "c_sharp", -- C#
 
     -- Markup / config formats
     "json", -- JSON
