@@ -2,39 +2,39 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
--- Basic
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+-- ══════════════════════════════════════════════════════════════════════
+-- General
+-- ══════════════════════════════════════════════════════════════════════
+map("n", ";", ":", { desc = "General Enter Cmdline" })
+map("i", "jk", "<ESC>", { desc = "General Exit Insert Mode" })
 
--- autolist.nvim - Cycle list types (lazy require to avoid startup load)
+-- ══════════════════════════════════════════════════════════════════════
+-- Lazy Tools (<leader>l)
+-- ══════════════════════════════════════════════════════════════════════
+map("n", "<leader>lg", "<cmd>LazyGit<cr>", { silent = true, desc = "Lazy Git UI" })
+map("n", "<leader>ls", "<cmd>LazySql<cr>", { silent = true, desc = "Lazy SQL Client" })
+map("n", "<leader>ld", function()
+  require("lazydocker").toggle { engine = "docker" }
+end, { silent = true, desc = "Lazy Docker" })
+map("n", "<leader>lp", function()
+  require("lazydocker").toggle { engine = "podman" }
+end, { silent = true, desc = "Lazy Podman" })
+
+-- ══════════════════════════════════════════════════════════════════════
+-- Toggle (<leader>t)
+-- ══════════════════════════════════════════════════════════════════════
+map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Toggle Git Blame" })
+
+-- ══════════════════════════════════════════════════════════════════════
+-- Autolist
+-- ══════════════════════════════════════════════════════════════════════
 map("n", "<leader>cn", function()
   return require("autolist").cycle_next_dr()
-end, { expr = true, desc = "Next list type" })
+end, { expr = true, desc = "List Cycle → Next" })
 map("n", "<leader>cp", function()
   return require("autolist").cycle_prev_dr()
-end, { expr = true, desc = "Prev list type" })
-
--- Auto-recalc after edits
-map("n", ">>", ">><cmd>AutolistRecalculate<cr>", { desc = "Indent + recalc" })
-map("n", "<<", "<<<cmd>AutolistRecalculate<cr>", { desc = "Unindent + recalc" })
-map("n", "dd", "dd<cmd>AutolistRecalculate<cr>", { desc = "Delete line + recalc" })
-map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "Delete selection + recalc" })
-
--- Lazy tools
-map("n", "<leader>lg", ":LazyGit<CR>", { noremap = true, silent = true, desc = "LazyGit" })
-map("n", "<leader>ls", ":LazySql<CR>", { noremap = true, silent = true, desc = "LazySql" })
-map(
-  "n",
-  "<leader>ld",
-  ":lua require('lazydocker').toggle({ engine = 'docker' })<CR>",
-  { noremap = true, silent = true, desc = "LazyDocker (docker)" }
-)
-map(
-  "n",
-  "<leader>lp",
-  ":lua require('lazydocker').toggle({ engine = 'podman' })<CR>",
-  { noremap = true, silent = true, desc = "LazyDocker (podman)" }
-)
-
--- gitsigns
-map("n", "<leader>tb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git toggle blame" })
+end, { expr = true, desc = "List Cycle → Prev" })
+map("n", "dd", "dd<cmd>AutolistRecalculate<cr>", { desc = "List Delete Line + Recalc" })
+map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "List Delete Selection + Recalc" })
+map("n", ">>", ">><cmd>AutolistRecalculate<cr>", { desc = "List Indent + Recalc" })
+map("n", "<<", "<<<cmd>AutolistRecalculate<cr>", { desc = "List Unindent + Recalc" })
