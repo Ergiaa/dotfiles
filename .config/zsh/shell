@@ -15,4 +15,3 @@ HISTFILE="$HOME/.zsh_history"
 # compinit
 
 export PATH="./bin:$HOME/.local/bin:$PATH"
-hash -r   # Clears the command hash table (zsh doesn’t have a direct set +h toggle)

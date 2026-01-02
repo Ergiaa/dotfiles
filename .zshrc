@@ -26,32 +26,43 @@ start_agent() {
     chmod 600 "$SSH_ENV"
 }
 
-if [ -f "$SSH_ENV" ]; then
+# Optimized SSH agent check - only start if not already available
+if [[ -z "$SSH_AUTH_SOCK" ]] || ! ssh-add -l &>/dev/null; then
+  if [ -f "$SSH_ENV" ]; then
     source "$SSH_ENV" > /dev/null
-    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-        start_agent
-    fi
-else
+  fi
+  if [[ -z "$SSH_AGENT_PID" ]] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
     start_agent
+  fi
 fi
 
 source ~/.zinit/bin/zinit.zsh
 
-# Initialize completions
-# zmodload zsh/complist
-# autoload -Uz compinit && compinit
+# Optimized compinit - only rebuild once a day
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
+# Load mise plugin (kept synchronous as it's needed early)
 zinit snippet OMZP::mise
-zinit snippet OMZP::command-not-found
 
-# Plugins
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
+# Removed OMZP::command-not-found (slow on Arch)
 
-autoload -Uz compinit && compinit
+# Turbo mode - load completions deferred
+zinit wait lucid atload"zicdreplay" blockf for \
+  zsh-users/zsh-completions
 
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light Aloxaf/fzf-tab
+# Turbo mode - load these after prompt
+zinit wait lucid for \
+  zsh-users/zsh-autosuggestions \
+  Aloxaf/fzf-tab
+
+# Load syntax highlighting last, deferred
+zinit wait lucid for \
+  zsh-users/zsh-syntax-highlighting
 
 # source <(fzf --zsh)
 
@@ -69,3 +80,13 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # . "$HOME/.local/share/../bin/env"
+
+# Lazy-load terraform completion for faster startup
+if command -v terraform &> /dev/null; then
+  terraform() {
+    unfunction terraform
+    autoload -U +X bashcompinit && bashcompinit
+    complete -o nospace -C /home/ergia/.local/share/mise/installs/terraform/1.13.4/terraform terraform
+    terraform "$@"
+  }
+fi

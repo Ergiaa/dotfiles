@@ -3,7 +3,11 @@
 #   eval "$(oh-my-posh init zsh --config "darkblood")"
 # fi
 
-# --- starship prompt ---
+# --- starship prompt --- cached for performance
 if command -v starship &> /dev/null; then
-  eval "$(starship init zsh)"
+  if [[ ! -f ~/.cache/starship-init.zsh ]] || [[ $(command -v starship) -nt ~/.cache/starship-init.zsh ]]; then
+    mkdir -p ~/.cache
+    starship init zsh > ~/.cache/starship-init.zsh
+  fi
+  source ~/.cache/starship-init.zsh
 fi

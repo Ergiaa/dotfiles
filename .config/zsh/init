@@ -1,11 +1,19 @@
-# mise (version manager)
+# mise (version manager) - cached for performance
 if command -v mise &> /dev/null; then
-  eval "$(mise activate zsh)"
+  if [[ ! -f ~/.cache/mise-init.zsh ]] || [[ $(command -v mise) -nt ~/.cache/mise-init.zsh ]]; then
+    mkdir -p ~/.cache
+    mise activate zsh > ~/.cache/mise-init.zsh
+  fi
+  source ~/.cache/mise-init.zsh
 fi
 
-# zoxide (smart cd)
+# zoxide (smart cd) - cached for performance
 if command -v zoxide &> /dev/null; then
-  eval "$(zoxide init zsh)"
+  if [[ ! -f ~/.cache/zoxide-init.zsh ]] || [[ $(command -v zoxide) -nt ~/.cache/zoxide-init.zsh ]]; then
+    mkdir -p ~/.cache
+    zoxide init zsh > ~/.cache/zoxide-init.zsh
+  fi
+  source ~/.cache/zoxide-init.zsh
 fi
 
 # fzf (fuzzy finder)
