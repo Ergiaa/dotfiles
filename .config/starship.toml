@@ -15,6 +15,9 @@ add_newline = true
 # [transient_prompt]
 # enabled = true
 
+[battery]
+disabled = true
+
 [sudo]
 disabled = true
 
@@ -72,11 +75,11 @@ disabled = true
 style = "bold white"
 format = "[$time]($style)"
 
-[custom.stunnel]
-when = "ps aux | grep stunnel | grep -v grep"
-command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
-style = "red"
-format = "[TUNNEL OPEN for $output]($style)"
+# [custom.stunnel]
+# when = "ps aux | grep stunnel | grep -v grep"
+# command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+# style = "red"
+# format = "[TUNNEL OPEN for $output]($style)"
 
 [aws]
 symbol = "  "
