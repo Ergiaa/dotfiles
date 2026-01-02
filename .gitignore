@@ -1,0 +1,14 @@
+# Tmux plugins (managed by TPM)
+.config/tmux/plugins/
+
+# Hyprland shaders
+.config/hypr/shaders/
+
+# Backup files
+*.bak
+*.bak.*
+
+# Editor swap files
+*.swp
+*.swo
+*~
