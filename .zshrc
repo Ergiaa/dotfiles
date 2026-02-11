@@ -1,3 +1,8 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/home/ergia/.zsh/completions" $fpath)
+# OPENSPEC:END
+
 # Created by newuser for 5.9
 # --- Load your main zsh config ---
 if [[ -f "$HOME/.config/zsh/rc" ]]; then
@@ -26,19 +31,17 @@ start_agent() {
     chmod 600 "$SSH_ENV"
 }
 
-# Optimized SSH agent check - only start if not already available
+# Optimized SSH agent check - non-blocking
 if [[ -z "$SSH_AUTH_SOCK" ]] || ! ssh-add -l &>/dev/null; then
   if [ -f "$SSH_ENV" ]; then
-    source "$SSH_ENV" > /dev/null
+    source "$SSH_ENV" > /dev/null 2>&1
   fi
   if [[ -z "$SSH_AGENT_PID" ]] || ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-    start_agent
+    (start_agent &)  # Run in background to avoid blocking shell startup
   fi
 fi
 
-source ~/.zinit/bin/zinit.zsh
-
-# Optimized compinit - only rebuild once a day
+# Optimized compinit - only rebuild once a day (moved before zinit)
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
@@ -46,8 +49,11 @@ else
   compinit -C
 fi
 
-# Load mise plugin (kept synchronous as it's needed early)
-zinit snippet OMZP::mise
+source ~/.zinit/bin/zinit.zsh
+
+# Defer mise plugin to not block prompt
+zinit wait lucid for \
+  OMZP::mise
 
 # Removed OMZP::command-not-found (slow on Arch)
 
@@ -90,3 +96,4 @@ if command -v terraform &> /dev/null; then
     terraform "$@"
   }
 fi
+export PATH="$HOME/.cargo/bin:$PATH"
