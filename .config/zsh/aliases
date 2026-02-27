@@ -1,8 +1,8 @@
 # File system
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git --group-directories-first'
-alias lta='lt -a'
+alias lt='eza --tree --level=2 --long --icons --git --group-directories-first --git-ignore'
+alias lta='eza --tree --level=2 --long --icons --git --group-directories-first -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias man='batman'
 

@@ -96,4 +96,4 @@ if command -v terraform &> /dev/null; then
     terraform "$@"
   }
 fi
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cache/.bun/bin:$HOME/.cargo/bin:$PATH"
