@@ -58,6 +58,16 @@ format = "[$symbol]($style)"
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "cyan"
+conflicted = "⚔"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "*"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -74,6 +84,14 @@ style = "yellow"
 disabled = true
 style = "bold white"
 format = "[$time]($style)"
+
+[shell]
+disabled = false
+format = "[$indicator]($style) "
+bash_indicator = "bash"
+zsh_indicator = "zsh"
+fish_indicator = "fish"
+style = "bold blue"
 
 # [custom.stunnel]
 # when = "ps aux | grep stunnel | grep -v grep"
@@ -119,6 +137,10 @@ symbol = " "
 [docker_context]
 symbol = " "
 
+
+[container]
+format = '[$symbol \[$name\]]($style) '
+style = "red bold"
 [elixir]
 symbol = " "
 
