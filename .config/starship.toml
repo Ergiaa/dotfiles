@@ -9,7 +9,7 @@ $git_metrics\
 $line_break\
 $character"""
 
-right_format = """$all"""
+right_format = """$nodejs$python$rust$golang$java$php$lua$ruby$c$cpp$cmake$deno$bun$package$cmd_duration"""
 add_newline = true
 
 # [transient_prompt]
@@ -26,7 +26,7 @@ format = '[$symbol($version )]($style) '
 symbol = "󰏗 "
 
 [nodejs]
-format = "[$symbol($version )]($style)"
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [fill]
@@ -88,15 +88,19 @@ symbol = "  "
 symbol = " "
 
 [bun]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [c]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [cpp]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [cmake]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [conda]
@@ -109,6 +113,7 @@ symbol = " "
 symbol = " "
 
 [deno]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [docker_context]
@@ -133,6 +138,7 @@ symbol = "  "
 tag_symbol = '  '
 
 [golang]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [guix_shell]
@@ -148,9 +154,12 @@ symbol = " "
 symbol = " "
 
 [hostname]
+ssh_only = true
+format = "[$ssh_symbol$hostname]($style) "
 ssh_symbol = " "
 
 [java]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [julia]
@@ -160,6 +169,7 @@ symbol = " "
 symbol = " "
 
 [lua]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [memory_usage]
@@ -228,6 +238,7 @@ Windows = "󰍲 "
 symbol = " "
 
 [php]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [pijul_channel]
@@ -237,15 +248,18 @@ symbol = " "
 symbol = "󰏗 "
 
 [python]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [rlang]
 symbol = "󰟔 "
 
 [ruby]
+format = "[$symbol($version) ]($style)"
 symbol = " "
 
 [rust]
+format = "[$symbol($version) ]($style)"
 symbol = "󱘗 "
 
 [scala]
