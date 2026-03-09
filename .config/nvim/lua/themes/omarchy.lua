@@ -25,6 +25,12 @@ local function blend(hex1, hex2, ratio)
   return rgb_to_hex(r1 * (1 - ratio) + r2 * ratio, g1 * (1 - ratio) + g2 * ratio, b1 * (1 - ratio) + b2 * ratio)
 end
 
+local function is_light_theme(bg_color)
+  local r, g, b = hex_to_rgb(bg_color)
+  local luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+  return luminance > 0.5
+end
+
 local function parse_omarchy_theme()
   local theme_file = vim.fn.expand "~/.config/omarchy/current/theme/colors.toml"
   local colors = {}
@@ -53,6 +59,8 @@ local function parse_omarchy_theme()
 end
 
 local function generate_theme(colors)
+  local is_light = is_light_theme(colors.background)
+  
   local theme = {
     base_16 = {
       base00 = colors.background,
@@ -60,8 +68,8 @@ local function generate_theme(colors)
       base02 = colors.color8,
       base03 = blend(colors.color0, colors.color8, 0.5),
       base04 = colors.foreground,
-      base05 = lighten(colors.foreground, 0.1),
-      base06 = lighten(colors.foreground, 0.2),
+      base05 = is_light and darken(colors.foreground, 0.1) or lighten(colors.foreground, 0.1),
+      base06 = is_light and darken(colors.foreground, 0.2) or lighten(colors.foreground, 0.2),
       base07 = colors.color15,
       base08 = colors.color1,
       base09 = colors.color3,
@@ -74,16 +82,16 @@ local function generate_theme(colors)
     },
     base_30 = {
       white = colors.foreground,
-      darker_black = darken(colors.background, 0.1),
+      darker_black = is_light and darken(colors.background, 0.1) or darken(colors.background, 0.1),
       black = colors.background,
-      black2 = lighten(colors.background, 0.05),
-      one_bg = lighten(colors.background, 0.1),
-      one_bg2 = lighten(colors.background, 0.15),
-      one_bg3 = lighten(colors.background, 0.2),
-      grey = lighten(colors.background, 0.25),
-      grey_fg = lighten(colors.background, 0.3),
-      grey_fg2 = lighten(colors.background, 0.35),
-      light_grey = lighten(colors.background, 0.4),
+      black2 = is_light and darken(colors.background, 0.05) or lighten(colors.background, 0.05),
+      one_bg = is_light and darken(colors.background, 0.1) or lighten(colors.background, 0.1),
+      one_bg2 = is_light and darken(colors.background, 0.15) or lighten(colors.background, 0.15),
+      one_bg3 = is_light and darken(colors.background, 0.2) or lighten(colors.background, 0.2),
+      grey = is_light and darken(colors.background, 0.25) or lighten(colors.background, 0.25),
+      grey_fg = is_light and darken(colors.background, 0.3) or lighten(colors.background, 0.3),
+      grey_fg2 = is_light and darken(colors.background, 0.35) or lighten(colors.background, 0.35),
+      light_grey = is_light and darken(colors.background, 0.4) or lighten(colors.background, 0.4),
       red = colors.color1,
       baby_pink = lighten(colors.color1, 0.2),
       pink = lighten(colors.color1, 0.1),
@@ -99,9 +107,9 @@ local function generate_theme(colors)
       teal = colors.color6,
       orange = colors.color3,
       cyan = colors.color6,
-      statusline_bg = darken(colors.background, 0.05),
-      lightbg = lighten(colors.background, 0.1),
-      pmenu_bg = colors.color2,
+      statusline_bg = is_light and darken(colors.background, 0.05) or darken(colors.background, 0.05),
+      lightbg = is_light and darken(colors.background, 0.1) or lighten(colors.background, 0.1),
+      pmenu_bg = is_light and colors.foreground or colors.color2,
       folder_bg = colors.color4,
     },
     polish_hl = {
@@ -110,7 +118,7 @@ local function generate_theme(colors)
         ["@punctuation.delimiter"] = { fg = colors.foreground },
       },
     },
-    type = "dark",
+    type = is_light and "light" or "dark",
   }
 
   return theme
