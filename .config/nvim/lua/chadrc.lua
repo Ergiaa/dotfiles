@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "nord",
-  theme_toggle = { "nord", "one_light" },
+  theme = "omarchy",
+  theme_toggle = { "omarchy", "omarchy" },
 
   -- hl_override = {
   -- 	Comment = { italic = true },
