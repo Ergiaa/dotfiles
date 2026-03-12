@@ -40,24 +40,8 @@ alias ....='cd ../../..'
 # Tools
 alias c='opencode'
 alias cx='printf "\033[2J\033[3J\033[H" && claude --allow-dangerously-skip-permissions'
+alias lg='lazygit'
 alias d='docker'
 alias r='rails'
 alias t='tmux attach || tmux new -s Work'
 n() { if [ "$#" -eq 0 ]; then command nvim . ; else command nvim "$@"; fi; }
-
-# Git
-alias gcm='git commit -m'
-alias gcam='git commit -a -m'
-alias gcad='git commit -a --amend'
-alias gb='git branch'
-alias gba='gb --all'
-alias gco='git checkout'
-alias gcl='git clone --recursive'
-alias gi='git init'
-alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
-alias gm='git merge'
-alias gn='git checkout -b'  # new branch
-alias gp='git push'
-alias gr='git reset'
-alias gs='git status --short'
-alias gu='git pull'
