@@ -25,6 +25,15 @@ if command -q fzf
     source ~/.cache/fzf-init.fish
 end
 
+# Starship transient prompt functions
+function starship_transient_prompt_func
+    starship module character
+end
+
+function starship_transient_rprompt_func
+    starship module time
+end
+
 # starship prompt - cached for performance
 if command -q starship
     if not test -f ~/.cache/starship-init.fish; or test (command -v starship) -nt ~/.cache/starship-init.fish
@@ -32,4 +41,5 @@ if command -q starship
         starship init fish > ~/.cache/starship-init.fish
     end
     source ~/.cache/starship-init.fish
+    enable_transience
 end
