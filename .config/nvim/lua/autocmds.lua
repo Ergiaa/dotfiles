@@ -23,10 +23,13 @@ local function reload_omarchy_theme()
   package.loaded["themes.omarchy"] = nil
   package.loaded["base46.themes.omarchy"] = nil
   vim.g.base46_theme = nil
-
+  
+  local theme_file = vim.fn.expand "~/.config/omarchy/current/theme/colors.toml"
+  vim.g.omarchy_theme_mtime = vim.fn.getftime(theme_file)
+  
   require("nvconfig").base46.theme = "omarchy"
   require("base46").load_all_highlights()
-
+  
   local ok, reload = pcall(require, "plenary.reload")
   if ok then
     reload.reload_module "volt.highlights"

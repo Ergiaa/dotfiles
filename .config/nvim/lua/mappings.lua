@@ -38,3 +38,4 @@ map("n", "dd", "dd<cmd>AutolistRecalculate<cr>", { desc = "List Delete Line + Re
 map("v", "d", "d<cmd>AutolistRecalculate<cr>", { desc = "List Delete Selection + Recalc" })
 map("n", ">>", ">><cmd>AutolistRecalculate<cr>", { desc = "List Indent + Recalc" })
 map("n", "<<", "<<<cmd>AutolistRecalculate<cr>", { desc = "List Unindent + Recalc" })
+

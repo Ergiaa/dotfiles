@@ -124,16 +124,21 @@ local function generate_theme(colors)
   return theme
 end
 
-function M.load()
-  local colors = parse_omarchy_theme()
-  if not colors then
-    return require("base46.themes.nord")
-  end
-
+local colors = parse_omarchy_theme()
+if colors then
   local theme = generate_theme(colors)
-  theme = require("base46").override_theme(theme, "omarchy")
-
-  return theme
+  M.base_30 = theme.base_30
+  M.base_16 = theme.base_16
+  M.polish_hl = theme.polish_hl
+  M.type = theme.type
+else
+  local nord = require("base46.themes.nord")
+  M.base_30 = nord.base_30
+  M.base_16 = nord.base_16
+  M.polish_hl = nord.polish_hl
+  M.type = nord.type
 end
 
-return M.load()
+M = require("base46").override_theme(M, "omarchy")
+
+return M
