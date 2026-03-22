@@ -1,0 +1,5 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:4300
+SETUVAR fish_greeting:
+SETUVAR fish_user_paths:/home/ergia/Documents/codes/omarchy/bin\x1e/home/ergia/\x2elocal/share/omarchy/bin\x1e/home/ergia/\x2elocal/bin\x1e/home/ergia/\x2ecache/\x2ebun/bin\x1e/home/ergia/\x2ecargo/bin

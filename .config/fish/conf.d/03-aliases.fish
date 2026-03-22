@@ -1,8 +1,9 @@
 # File system
 alias ls 'eza -lh --group-directories-first --icons=auto'
 alias lsa 'ls -a'
-alias lt 'eza --tree --level=2 --long --icons --git --group-directories-first --git-ignore'
-alias lta 'eza --tree --level=2 --long --icons --git --group-directories-first -a'
+alias lt 'eza --tree --follow-symlinks --level=2 --long --icons --git --group-directories-first --git-ignore'
+alias lta 'eza --tree --follow-symlinks --level=2 --long --icons --git --group-directories-first -a'
+alias cat 'bat --style=plain --paging=auto'
 alias ff "fzf --preview 'bat --style=numbers --color=always {}'"
 alias eff '$EDITOR (ff)'
 alias man batman
